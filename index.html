@@ -1,37 +1,37 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-	<meta charset="UTF-8">
-	<title>RoutineHubDownload</title>
+    <meta charset="UTF-8">
+    <title>RoutineHubDownload</title>
 </head>
 <body>
 <script>
 (async () => {
-	const query = window.location.search.substring(1);
+    const query = window.location.search.substring(1);
 
-	if (!query) {
-		document.body.textContent = "Missing RoutineHub ID";
-		return;
-	}
+    if (!query) {
+        document.body.textContent = "Missing RoutineHub ID";
+        return;
+    }
 
-	const apiUrl = `https://routinehub.co/api/v1/shortcuts/${query}/versions/latest`;
+    const apiUrl = `https://routinehub.co/api/v1/shortcuts/${query}/versions/latest`;
 
-	try {
-		const res = await fetch(apiUrl);
-		if (!res.ok) throw new Error("Request failed");
+    try {
+        const res = await fetch(apiUrl);
+        if (!res.ok) throw new Error("Request failed");
 
-		const data = await res.json();
+        const data = await res.json();
 
-		if (!data.URL) {
-			document.body.textContent = "No redirect URL found in response.";
-			return;
-		}
+        if (!data.URL) {
+            document.body.textContent = "No redirect URL found in response.";
+            return;
+        }
 
-		location.href = data.URL;
-		document.body.innerHTML = `You should get redirected in a second, if not <a href="${data.URL}">click here</a>`
-	} catch (e) {
-		document.body.textContent = "Error: " + e.message;
-	}
+        location.href = data.URL;
+        document.body.innerHTML = `You should get redirected in a second, if not <a href="${data.URL}">click here</a>`
+    } catch (e) {
+        document.body.textContent = "Error: " + e.message;
+    }
 })();
 </script>
 </body>
