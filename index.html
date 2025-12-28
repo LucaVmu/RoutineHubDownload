@@ -22,13 +22,13 @@
 
 		const data = await res.json();
 
-		if (!data.url) {
+		if (!data.URL) {
 			document.body.textContent = "No redirect URL found in response.";
 			return;
 		}
 
-		location.href = data.url;
-		document.body.innerHTML = `You should get redirected in a second, if not <a href="${data.url}">click here</a>`
+		location.href = data.URL;
+		document.body.innerHTML = `You should get redirected in a second, if not <a href="${data.URL}">click here</a>`
 	} catch (e) {
 		document.body.textContent = "Error: " + e.message;
 	}
